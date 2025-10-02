@@ -54,8 +54,8 @@
     "react-router-dom": "https://esm.sh/react-router-dom@6.23.1",
     "@google/genai": "https://esm.sh/@google/genai@0.12.0",
     "recharts": "https://esm.sh/recharts@2.12.7",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
   }
 }
 </script>
@@ -63,23 +63,10 @@
 <body class="bg-brand-dark text-brand-light">
     <div id="root"></div>
 
-    <!-- Load Application Scripts with Babel -->
-    <!-- NOTE: Order is critical for dependencies -->
-    <script type="text/babel" data-presets="react,typescript" src="./services/geminiService.ts"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./components/Footer.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./components/Header.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./components/Layout.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/Home.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/AboutCompany.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/RotisSolution.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/PortfolioImpact.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/TechStack.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/CoreServices.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/AiExpertise.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/AcclaimVisa.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/Contact.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./pages/TrialDemo.tsx"></script>
-    <script type="text/babel" data-presets="react,typescript" src="./App.tsx"></script>
+    <!-- 
+      Load the single entry point for the application.
+      Babel will transpile this file, and its `import` statements will handle loading all other components.
+    -->
     <script type="text/babel" data-presets="react,typescript" src="./index.tsx"></script>
 
 </body>

@@ -3,15 +3,15 @@ import { GoogleGenAI } from "@google/genai";
 // IMPORTANT: PASTE YOUR GEMINI API KEY HERE
 // This key is necessary for the AI features on the "AI Expertise" page to work.
 // Get your free key from Google AI Studio: https://aistudio.google.com/
-const apiKey = "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY";
+const apiKey = "YOUR_GEMINI_API_KEY_HERE";
 
 // Check if the API key has been replaced
-if (!apiKey || apiKey === "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY") {
+if (!apiKey || apiKey === "YOUR_GEMINI_API_KEY_HERE") {
     console.warn("Gemini API key not found. Please paste your key in services/geminiService.ts for AI features to work.");
 }
 
 // Initialize the AI client only if the key is valid
-const ai = (apiKey && apiKey !== "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY") ? new GoogleGenAI({ apiKey }) : null;
+const ai = (apiKey && apiKey !== "YOUR_GEMINI_API_KEY_HERE") ? new GoogleGenAI({ apiKey }) : null;
 
 export const generateAiInsight = async (topic: string): Promise<string> => {
     if (!ai) {
