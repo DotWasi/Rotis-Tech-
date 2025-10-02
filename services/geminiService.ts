@@ -1,16 +1,18 @@
-// FIX: Import GoogleGenAI from the SDK instead of using a global variable.
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY;
+// IMPORTANT: PASTE YOUR GEMINI API KEY HERE
+// This key is necessary for the AI features on the "AI Expertise" page to work.
+// Get your free key from Google AI Studio: https://aistudio.google.com/
+const apiKey = "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY";
 
-if (!apiKey) {
-    console.warn("Gemini API key not found. Please set the API_KEY environment variable for AI features to work.");
+// Check if the API key has been replaced
+if (!apiKey || apiKey === "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY") {
+    console.warn("Gemini API key not found. Please paste your key in services/geminiService.ts for AI features to work.");
 }
 
-// FIX: Instantiate GoogleGenAI correctly using the imported class.
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+// Initialize the AI client only if the key is valid
+const ai = (apiKey && apiKey !== "AIzaSyDp7mqF6sR6bQCj4Hu9Rkk-sHNtVpA4YlY") ? new GoogleGenAI({ apiKey }) : null;
 
-// FIX: Export functions to be used in other modules.
 export const generateAiInsight = async (topic: string): Promise<string> => {
     if (!ai) {
         return Promise.resolve("API Key not configured. This is a demo response. AI insights would appear here, showing how predictive analytics can optimize restaurant inventory by analyzing sales data, seasonality, and local events to reduce waste and prevent stockouts, directly improving profitability.");
@@ -34,7 +36,6 @@ export const generateAiInsight = async (topic: string): Promise<string> => {
     }
 };
 
-// FIX: Export functions to be used in other modules.
 export const generateAiImage = async (prompt: string): Promise<string> => {
     if (!ai) {
         return Promise.resolve("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiMwYTBmMWYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZmRmZGZkIj5BSSBJbWFnZSBHZW5lcmF0aW9uPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjAlIiBkb21pbmFudC1-YmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIj5BUEkgS2V5IE5vdCBDb25maWd1cmVkPC90ZXh0Pjwvc3ZnPg==");
