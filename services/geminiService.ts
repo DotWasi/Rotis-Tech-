@@ -1,0 +1,60 @@
+// FIX: Import GoogleGenAI from the SDK instead of using a global variable.
+import { GoogleGenAI } from "@google/genai";
+
+const apiKey = process.env.API_KEY;
+
+if (!apiKey) {
+    console.warn("Gemini API key not found. Please set the API_KEY environment variable for AI features to work.");
+}
+
+// FIX: Instantiate GoogleGenAI correctly using the imported class.
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+
+// FIX: Export functions to be used in other modules.
+export const generateAiInsight = async (topic: string): Promise<string> => {
+    if (!ai) {
+        return Promise.resolve("API Key not configured. This is a demo response. AI insights would appear here, showing how predictive analytics can optimize restaurant inventory by analyzing sales data, seasonality, and local events to reduce waste and prevent stockouts, directly improving profitability.");
+    }
+    
+    try {
+        const response = await ai.models.generateContent({
+            model: 'gemini-2.5-flash',
+            contents: `In 3-4 concise sentences, explain how the concept of "${topic}" can be applied to innovate or automate operations in the restaurant industry. Focus on the business value and impact.`,
+            config: {
+                temperature: 0.7,
+                topP: 1,
+                topK: 32,
+            }
+        });
+        
+        return response.text;
+    } catch (error) {
+        console.error("Error calling Gemini API:", error);
+        throw new Error("Failed to generate insight from AI model.");
+    }
+};
+
+// FIX: Export functions to be used in other modules.
+export const generateAiImage = async (prompt: string): Promise<string> => {
+    if (!ai) {
+        return Promise.resolve("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIGZpbGw9IiMwYTBmMWYiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjQwIiBmaWxsPSIjZmRmZGZkIj5BSSBJbWFnZSBHZW5lcmF0aW9uPC90ZXh0Pjx0ZXh0IHg9IjUwJSIgeT0iNjAlIiBkb21pbmFudC1-YmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOWNhM2FmIj5BUEkgS2V5IE5vdCBDb25maWd1cmVkPC90ZXh0Pjwvc3ZnPg==");
+    }
+
+    try {
+        const response = await ai.models.generateImages({
+            model: 'imagen-4.0-generate-001',
+            prompt: `A futuristic, professional, high-resolution, cinematic photograph of: ${prompt}. Tech-inspired aesthetic with deep blues and neon accents.`,
+            config: {
+                numberOfImages: 1,
+                outputMimeType: 'image/jpeg',
+                aspectRatio: '1:1',
+            },
+        });
+
+        const base64ImageBytes = response.generatedImages[0].image.imageBytes;
+        return `data:image/jpeg;base64,${base64ImageBytes}`;
+    } catch (error) {
+        console.error("Error calling Imagen API:", error);
+        throw new Error("Failed to generate image from AI model.");
+    }
+};

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotis Tech | Fourth Industrial Revolution in Hospitality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-dark': '#0a0f1f',
+            'brand-primary': '#0ea5e9',
+            'brand-secondary': '#14b8a6',
+            'brand-light': '#f0f9ff',
+            'brand-gray': '#9ca3af',
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'gradient-x': 'gradient-x 15s ease infinite',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'gradient-x': {
+              '0%, 100%': {
+                'background-size': '200% 200%',
+                'background-position': 'left center',
+              },
+              '50%': {
+                'background-size': '200% 200%',
+                'background-position': 'right center',
+              },
+            }
+          },
+        }
+      }
+    }
+    </script>
+
+    <!-- UMD Library Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-router@6.23.1/dist/umd/react-router.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-router-dom@6.23.1/dist/umd/react-router-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
+
+    <!-- ES Module for Google GenAI, exposed to window -->
+    <script type="module">
+        import { GoogleGenAI } from "https://esm.sh/@google/genai@0.12.0";
+        window.GoogleGenAI = GoogleGenAI;
+    </script>
+    
+    <!-- Babel Standalone for in-browser JSX/TSX transformation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.3",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.22.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "recharts": "https://aistudiocdn.com/recharts@^3.2.1"
+  }
+}
+</script>
+</head>
+<body class="bg-brand-dark text-brand-light">
+    <div id="root"></div>
+
+    <!-- Load Application Scripts with Babel -->
+    <!-- NOTE: Order is critical for dependencies -->
+    <script type="text/babel" data-presets="react,typescript" src="./services/geminiService.ts"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./components/Footer.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./components/Header.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./components/Layout.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/Home.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/AboutCompany.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/RotisSolution.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/PortfolioImpact.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/TechStack.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/CoreServices.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/AiExpertise.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/AcclaimVisa.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/Contact.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./pages/TrialDemo.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./App.tsx"></script>
+    <script type="text/babel" data-presets="react,typescript" src="./index.tsx"></script>
+
+</body>
+</html>
